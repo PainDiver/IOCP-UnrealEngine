@@ -1,0 +1,86 @@
+syntax = "proto3";
+package Protocol;
+
+enum PlayerType
+{
+	PLAYER_TYPE_NONE = 0;
+	PLAYER_TYPE_KNIHGT =1;
+	PLAYER_TYPE_MAGE =2 ;
+	PLAYER_TYPE_ARCHER =3;
+}
+
+message Player
+{
+	uint64 id = 1;
+	string name = 2;
+	PlayerType playertype =3;
+}
+
+//////////////////////////////////////////////////
+
+message C_LOGIN
+{
+
+}
+
+message S_LOGIN
+{
+	bool success = 1;
+	uint64 ConnectingPlayerIndex= 2;
+	repeated Player player = 3;
+}
+
+message C_ENTER_GAME
+{
+	uint64 playerIndex =1;
+}
+
+message S_ENTER_GAME
+{
+	bool success =1;
+	repeated Player player = 2;
+}
+
+message C_CHAT
+{
+	uint64 playerIndex =1;
+	string msg = 2;
+}
+
+message S_CHAT
+{
+	uint64 playerId = 1;
+	string msg = 2;
+}
+
+message C_MOVE
+{
+	uint64 playerId = 1;
+
+	double x = 2;
+	double y = 3;
+	double z = 4;
+
+	double xRot =5;
+	double yRot =6;
+	double zRot =7;
+
+	double speed =8;
+	bool moving = 9;
+}
+
+message S_MOVE
+{
+	uint64 playerId = 1;
+
+	double x = 2;
+	double y = 3;
+	double z = 4;
+
+	double xRot =5;
+	double yRot =6;
+	double zRot =7;
+	
+	double speed =8;
+	bool moving = 9;
+}
